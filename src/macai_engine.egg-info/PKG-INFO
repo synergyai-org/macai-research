@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: macai_engine
+Version: 0.1.0
+Summary: A custom package for the MacAI engine project.
+Author-email: Your Name <you@example.com>
+Requires-Python: >=3.10
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: tqdm
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: timm
+Requires-Dist: numpy==1.26.4
+Requires-Dist: ipywidgets
+Requires-Dist: scikit-learn

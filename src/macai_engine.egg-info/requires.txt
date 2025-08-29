@@ -1,0 +1,9 @@
+torch
+torchvision
+tqdm
+pandas
+matplotlib
+timm
+numpy==1.26.4
+ipywidgets
+scikit-learn
