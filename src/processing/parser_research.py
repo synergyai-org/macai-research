@@ -74,7 +74,7 @@ def save_to_csv(xml_filepath: str, metadata: dict, output_path: str):
         if field == "scale_factor":
             xml_type = metadata.get("xml_type", "").lower()
             try:
-                row[field] = float(row[field])
+                row[field] = float(row[field]) / 1000
             except (ValueError, TypeError):
                 if xml_type == "philips":
                     row[field] = 0.005
