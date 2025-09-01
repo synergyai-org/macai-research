@@ -78,7 +78,7 @@ def save_to_csv(xml_filepath: str, metadata: dict, output_path: str):
             except (ValueError, TypeError):
                 if xml_type == "philips":
                     row[field] = 0.005
-                elif xml_type == "GE":
+                elif xml_type == "ge":
                     row[field] = 0.00488
                 elif xml_type == "infinitt":
                     row[field] = 0.005
