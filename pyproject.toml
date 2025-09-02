@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 name = "macai_engine"
 version = "0.1.0"
 authors = [
-  { name="Your Name", email="you@example.com" },
+  {name="kimbg", email="kimbgai@synergyai.co"},
 ]
 description = "A custom package for the MacAI engine project."
 requires-python = ">=3.10"
@@ -22,4 +22,12 @@ dependencies = [
     "numpy==1.26.4",  # <--- 이 부분을 추가하세요
     "ipywidgets",  # <--- tqdm 경고 해결을 위해 이 부분을 추가
     "scikit-learn",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+service = [
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",
 ]

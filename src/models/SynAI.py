@@ -261,7 +261,7 @@ class MAE_1D_250409_v3(nn.Module):  # No pretrained
             nn.Tanh()            
         )
 
-        print(f'seq_length {seq_length}, in_channels {in_channels}, patch_size {patch_size}, embed_dim {embed_dim}, token_len {self.token_len}, ')
+        # print(f'seq_length {seq_length}, in_channels {in_channels}, patch_size {patch_size}, embed_dim {embed_dim}, token_len {self.token_len}, ')
 
         # 가중치 초기화
         self.initialize_weights()

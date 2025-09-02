@@ -1,4 +1,4 @@
-from model_architecture import SynAI
+from models import SynAI
 import torch
 
 def model_build(model_info):

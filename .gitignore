@@ -15,9 +15,13 @@ __pycache__/
 notebooks/calibration/assets/
 
 # 학습된 모델 파일
-*.pkl
 *.pth
 *.h5
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
 
 # IDE 및 시스템 파일 #
 # VSCode 설정 폴더

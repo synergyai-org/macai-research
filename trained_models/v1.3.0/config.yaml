@@ -9,19 +9,11 @@ MODEL_INFO:
     merge_mode: "projection"
     num_classes: 12
   MODEL_PATHS:
-    # 모델 체크포인트 경로
     - "/mnt/home/bgk/macai-model-experimental/_kimbg_code/SynAI_v2/outputs/checkpoint/CL_step3-TRN-MacAI_v1_2-0819 copy 21/0fold/Best_AUPRC-Ep_3-Lo_0.082-M0_0.793-M1_0.494.pth"
     - "/mnt/home/bgk/macai-model-experimental/_kimbg_code/SynAI_v2/outputs/checkpoint/CL_step3-TRN-MacAI_v1_2-0819 copy 21/0fold/Best_AUROC-Ep_7-Lo_0.082-M0_0.800-M1_0.493.pth"
     - "/mnt/home/bgk/macai-model-experimental/_kimbg_code/SynAI_v2/outputs/checkpoint/CL_step3-TRN-MacAI_v1_2-0819 copy 21/0fold/Best_loss-Ep_5-Lo_0.082-M0_0.797-M1_0.493.pth"
-  AF_CAL_MODEL_PATH: "/mnt/home/bgk/macai-engine-v1/trained_models/v1.2.1/calibration_model-AF.pkl"
-  CIA_CAL_MODEL_PATH: "/mnt/home/bgk/macai-engine-v1/trained_models/v1.2.1/calibration_model-CIA.pkl"
-  RISK_THRESHOLD:
-    af_high_g_thr: 0.18594001505695362
-    af_inter_g_thr: 0.09283757956391994
-    cia_high_g_thr: 0.6134156782179706
-    cia_inter_g_thr: 0.39689483565475614
-
-DATA_INFO:
+  AF_CAL_MODEL_PATH: "/mnt/home/bgk/macai-engine-v1/trained_models/v1.3.0/calibration_model-AF.pkl"
+  CIA_CAL_MODEL_PATH: "/mnt/home/bgk/macai-engine-v1/trained_models/v1.3.0/calibration_model-CIA.pkl"
   OUTPUT_CLS_INFO:
     cls_names:
       - "ECG_event_3d_AFIB_AFL-keyword_v2_onset"
@@ -38,19 +30,32 @@ DATA_INFO:
       - "CIA-keyword_v2"
     target_cls:
       AF: "ECG_event_14d_AFIB_AFL-keyword_v2_onset"
-      CIA: "ECG_event_14d_CIA-keyword_v2_onset"
-  ECG_PATHS:
-    # ECG 데이터 경로
-    - "/mnt/home/Datasets_processed/EKG_Latest/signal-bpf0540_or3/10302870_2023-10-17_2023101716092374_2023101716095795.npy"
-    - "/mnt/home/Datasets_processed/EKG_Latest/signal-bpf0540_or3/10203160_2023-10-04_2023100411441625_2023101110031840.npy"
-  PREPROCESS:
-    scaling_factor: null
-    do_bandpass: null
-    # do_bandpass:
-    #   lowcut: 0.5
-    #   highcut: 40.0
-      # order: 3
-    original_fs: 500
-    # original_fs: 256
-    target_fs: 256
-    do_normalize: false
+      CIA: "ECG_event_14d_CIA-keyword_v2_onset"  
+  RISK_THRESHOLD:
+    af_high_g_thr: 0.18594001505695362
+    af_inter_g_thr: 0.09283757956391994
+    cia_high_g_thr: 0.6134156782179706
+    cia_inter_g_thr: 0.39689483565475614
+
+PREPROCESS:
+  do_bandpass:
+    lowcut: 0.5
+    highcut: 40.0
+    order: 3
+  target_fs: 256
+  do_normalize: false
+  transforms:
+    val:
+      - type: "NormalizeECG"
+        method: "tanh"
+        scope: "lead-wise"
+        scale: 1
+
+## 아래는 추론 엔진 설정. API 전용 ##
+FOR_INFER_ENGINE:
+  XML_PARSER_URL: "http://localhost:18003/parse/parse_xml" 
+  XML_HEALTHCHECK_URL: "http://localhost:18003/healthcheck"
+  XML_PATHS:
+    - "/mnt/home/bgk/macai-engine-v1/data/samples/xmls/10144268_2024-06-02_2024060214062189_2024060214053964.xml"
+    - "/mnt/home/bgk/macai-engine-v1/data/samples/xmls/10203160_2023-10-04_2023100411441625_2023101110031840.xml"
+    - "/mnt/home/bgk/macai-engine-v1/data/samples/xmls/10302870_2023-10-17_2023101716092374_2023101716095795.xml"
